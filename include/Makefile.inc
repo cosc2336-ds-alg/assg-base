@@ -65,6 +65,10 @@ $(BASE_DIR)/$(OBJ_DIR)/%.o: $(BASE_DIR)/$(SRC_DIR)/%.cpp | $(BASE_DIR)/$(OBJ_DIR
 $(OBJ_DIR):
 	mkdir -p $@
 
+$(BASE_DIR)/$(OBJ_DIR):
+	mkdir -p $@
+
+
 ## run          : Run the unit tests showing successful tests
 ##
 run : $(TEST_TARGET)
