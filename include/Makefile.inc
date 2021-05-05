@@ -1,5 +1,7 @@
 # compiler flags, tools and include variables
-BASE_DIR := ../assg-base
+VERSION=0.3
+BASE_NAME=assg-base-$(VERSION)
+BASE_DIR := ../$(BASE_NAME)
 GCC_FLAGS=-Wall -Werror -pedantic -g
 GCC=g++
 INC=-Iinclude -I$(BASE_DIR)/include
@@ -26,7 +28,7 @@ DEBUG_TARGET=$(BIN_DIR)/debug
 # sources and objects needed to be linked together for unit test executable
 test_src := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(test_src))
 test_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(test_src))
-catch_test_obj := $(BASE_DIR)/$(OBJ_DIR)/tests-main.o
+catch_test_obj := $(BASE_DIR)/$(OBJ_DIR)/catch2-main.o
 
 # objects needed to be linked together for main/debug executable
 debug_src := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(debug_src))
@@ -69,9 +71,9 @@ $(BASE_DIR)/$(OBJ_DIR):
 	mkdir -p $@
 
 
-## run          : Run the unit tests showing successful tests
+## tests        : Run the unit tests showing failing tests only
 ##
-run : $(TEST_TARGET)
+tests : $(TEST_TARGET)
 	./$(TEST_TARGET) --use-colour yes
 
 

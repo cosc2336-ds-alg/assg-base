@@ -6,7 +6,7 @@ RM=rm -rf
 
 
 # source files in this project 
-test_src  = tests-main.cpp
+test_src  = catch2-main.cpp
 
 SRC_DIR := src
 OBJ_DIR := obj
