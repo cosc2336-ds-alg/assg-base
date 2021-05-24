@@ -31,11 +31,11 @@
             }
         },
         {
-            "label": "make run",
+            "label": "make tests",
             "type": "shell",
             "command": "make",
             "args": [
-                "run"
+                "tests"
             ],
             "group": {
                 "kind": "test",
