@@ -6,12 +6,12 @@ GCC_FLAGS=-Wall -Werror -pedantic -g
 GCC=g++
 INC=-Iinclude -I$(BASE_DIR)/include
 
-BEAUTIFIER=uncrustify
+FORMATTER=clang-format
 DOC=doxygen
 PANDOC=pandoc
 RM=rm -rf
 
-BEAUTIFIER_FLAGS=-c $(BASE_DIR)/config/uncrustify.cfg --replace --no-backup
+FORMATTER_FLAGS=-i
 DOC_FLAGS=$(BASE_DIR)/config/Doxyfile
 PANDOC_FLAGS=-s --variable geometry:margin=0.75in --variable urlcolor:NavyBlue --variable colorlinks:true
 PANDOC_HIGHLIGHT=--highlight-style tango
@@ -77,11 +77,11 @@ tests : $(TEST_TARGET)
 	./$(TEST_TARGET) --use-colour yes
 
 
-## beautify     : Run the code beautifier by hand if needed
+## format       : Run the code formatter/beautifier by hand if needed
 ##
-.PHONY : beautify
-beautify :
-	$(BEAUTIFIER) $(BEAUTIFIER_FLAGS) include/*.hpp src/*.cpp
+.PHONY : format
+format :
+	$(FORMATTER) $(FORMATTER_FLAGS) include/*.hpp src/*.cpp
 
 
 ## refdocs      : Create doxygen reference documentation from
